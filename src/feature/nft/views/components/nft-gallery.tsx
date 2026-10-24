@@ -44,7 +44,11 @@ export function NftGallery({
           onClick={onFavorite}
           className="mobile-back-button"
         >
-          <Icon asset={figmaAssets.nftMobile.vector} />
+          {favorite ? (
+            <Icon name="heartFilled" />
+          ) : (
+            <Icon asset={figmaAssets.nftMobile.vector} />
+          )}
         </button>
       </div>
       <div className="nft-thumbnails" aria-label="Imagens do NFT">

@@ -529,3 +529,9 @@ Imagens responsivas WebP em 320/640/960 px, qualidade 90, foram acrescentadas ma
 ### Renderização pública e performance — atualização final
 
 A spec 010 mantém as composições React e acrescenta HTML público no build, hidratação e prioridade de fonte/imagens antes dos downloads de hidratação. O runtime continua uma SPA estática com os mocks e eventos completos. As medianas Lighthouse finais foram Performance 98/96 em mobile e 100/100 em desktop (início/detalhe); Accessibility, Best Practices e SEO 100. LCP mobile: 2,413/2,782 s; CLS e TBT medianos zero. O detalhe ainda supera a proposta de LCP de 2,5 s; a pontuação obrigatória foi atingida. Metodologia e relatórios em docs/lighthouse/README.md. Não são métricas de campo nem auditoria WCAG completa.
+
+## Favorito com coração preenchido — 24/10/2026
+
+Ajuste visual solicitado pelo usuário: no detalhe do NFT, o estado selecionado de favorito usa coração preenchido em desktop e mobile. A variante mantém a silhueta externa e o cobre do ícone existente, em `public/assets/icons/heart-filled.svg`; os SVGs originais foram preservados. O estado não selecionado mantém o contorno. Rótulos, aria-pressed, mutations, persistência e rollback seguem a integração existente. Ajuste de apresentação, sem nova spec.
+
+Verificação: `pnpm typecheck`, `pnpm lint` e `pnpm build` passaram, incluindo as 240 páginas públicas pré-renderizadas. O teste existente de favoritos em `tests/flows.spec.ts` passou, cobrindo persistência, rollback e isolamento. No Chromium sobre o build, conferidos ícone preenchido desktop/mobile e retorno ao contorno após remover; captura desktop inspecionada visualmente. Execução manual interativa e suíte integral não realizadas neste ajuste. O build foi executado fora do sandbox porque a pré-renderização usa um servidor local do Vite.

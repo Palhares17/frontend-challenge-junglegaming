@@ -282,7 +282,7 @@ test('route loading, network failure, retry and missing resources use MSW', asyn
   await page
     .getByRole('link', { name: 'Ver Sage Nomad #009', exact: true })
     .click();
-  await expect(page.getByRole('alert')).toContainText('Verifique sua conexão');
+  await expect(page.getByRole('alert')).toHaveText('Não foi possível carregar a página. Tente novamente.');
   await page.evaluate(() =>
     localStorage.removeItem('kurio:navigation-scenario'),
   );
@@ -365,12 +365,7 @@ test('session API outage blocks private content and retry recovers without a new
     localStorage.setItem('kurio:navigation-scenario', 'error'),
   );
   await page.goto('/account/profile');
-  await expect(
-    page.getByRole('heading', {
-      name: 'Não foi possível carregar a página',
-      exact: true,
-    }),
-  ).toBeVisible();
+  await expect(page.getByRole('alert')).toHaveText('Não foi possível carregar a página. Tente novamente.');
   await expect(page.getByLabel(/^E-mail/)).toHaveCount(0);
   await page.evaluate(() =>
     localStorage.removeItem('kurio:navigation-scenario'),

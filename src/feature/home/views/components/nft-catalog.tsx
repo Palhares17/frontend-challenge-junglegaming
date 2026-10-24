@@ -12,6 +12,8 @@ import { CatalogFilters } from './catalog-filters';
 import { FeaturedNft } from './featured-nft';
 import { CatalogFeedback } from './catalog-feedback';
 import { CatalogSkeleton } from './catalog-skeleton';
+import { usePageLoadError } from '@/core/hooks/use-page-load-error';
+import { LoadRecovery } from '@/core/components/general/load-recovery';
 
 interface NftCatalogProps {
   search: CatalogSearch;
@@ -20,6 +22,7 @@ interface NftCatalogProps {
 
 export function NftCatalog({ search, onChange }: NftCatalogProps) {
   const query = useCatalog(search);
+  usePageLoadError(query.isFetching ? null : query.error, 'catalog-load-error');
   const favorites = useFavorites();
   const notify = useUnavailable();
   return (
@@ -40,11 +43,14 @@ export function NftCatalog({ search, onChange }: NftCatalogProps) {
         </div>
         <div className="min-w-0">
           <CatalogToolbar search={search} onChange={onChange} />
+          {query.isError && query.data && (
+            <LoadRecovery onRetry={() => void query.refetch()} pending={query.isFetching} />
+          )}
           <div className="mt-4 lg:mt-8" aria-busy={query.isFetching}>
             {query.isPending ? (
               <CatalogSkeleton />
-            ) : query.isError ? (
-              <CatalogFeedback error onRetry={() => void query.refetch()} />
+            ) : query.isError && !query.data ? (
+              <LoadRecovery onRetry={() => void query.refetch()} pending={query.isFetching} />
             ) : !query.data.items.length ? (
               <CatalogFeedback
                 onRetry={() =>

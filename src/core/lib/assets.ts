@@ -47,6 +47,7 @@ export const icons = {
   },
   favorite: { src: `${base}mobile-frame410.svg`, width: 28, height: 28 },
   heart: { src: `${base}mobile-vector1.svg`, width: 20, height: 17.7936 },
+  heartFilled: { src: '/assets/icons/heart-filled.svg', width: 20, height: 20 },
   home: { src: `${base}mobile-home.svg`, width: 15.8333, height: 16.6668 },
   shop: { src: `${base}mobile-shop.svg`, width: 20, height: 20 },
   user: { src: `${base}mobile-user.svg`, width: 20, height: 20 },

@@ -213,9 +213,7 @@ test('slow loading respects reduced motion and 503 can recover without a reload'
     localStorage.setItem('kurio:mock-scenario', 'error'),
   );
   await page.getByRole('button', { name: 'Em alta', exact: true }).click();
-  await expect(catalog(page).getByRole('alert')).toContainText(
-    'Não foi possível carregar',
-  );
+  await expect(page.getByRole('alert')).toHaveText('Não foi possível carregar a página. Tente novamente.');
   await page.evaluate(() => localStorage.removeItem('kurio:mock-scenario'));
   await page.getByRole('button', { name: 'Tentar novamente' }).click();
   await expect(cards(page)).toHaveCount(9);

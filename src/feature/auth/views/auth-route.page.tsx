@@ -1,4 +1,4 @@
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useRouter } from '@tanstack/react-router';
 import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
@@ -28,7 +28,8 @@ export function AuthRoutePage({
   const router = useRouter();
   const client = router.options.context.queryClient;
   const navigation = useProductNavigation()!;
-  const { data } = useSuspenseQuery(catalogOptions(navigation.catalogSearch));
+  // The background catalog must never block login or registration.
+  const { data } = useQuery(catalogOptions(navigation.catalogSearch));
   useEffect(() => () => toast.remove(loginErrorToastId), [mode]);
   const mutation = useMutation({
     meta: { public: true },
@@ -50,8 +51,8 @@ export function AuthRoutePage({
     <AuthScreen
       background={<CatalogHome search={navigation.catalogSearch} />}
       mode={mode}
-      items={data.items}
-      facets={data.facets}
+      items={data?.items ?? []}
+      facets={data?.facets ?? { collections: {}, networks: {} }}
       pending={mutation.isPending}
       returnTo={redirectTo}
       onAction={navigation.onAction}

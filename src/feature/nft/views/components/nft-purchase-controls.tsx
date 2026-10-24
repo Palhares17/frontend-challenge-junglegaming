@@ -73,7 +73,11 @@ export function NftPurchaseControls({
           onClick={onFavorite}
           className="w-[130px] gap-2 border-primary bg-transparent dark:bg-transparent dark:border-primary text-sm font-medium text-text-accent"
         >
-          <Icon asset={figmaAssets.nftDesktop.heart1} />
+          {favorite ? (
+            <Icon name="heartFilled" />
+          ) : (
+            <Icon asset={figmaAssets.nftDesktop.heart1} />
+          )}
           {favorite ? 'Favoritado' : 'Favoritar'}
         </Button>
       </div>
