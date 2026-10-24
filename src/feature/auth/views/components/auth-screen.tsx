@@ -130,6 +130,7 @@ export function AuthScreen({
         }}
       >
         <DialogContent
+          positioning="custom"
           initialFocus={navigation ? true : false}
           showCloseButton={false}
           className={`auth-desktop-panel ${register ? 'auth-register' : 'auth-login'}`}

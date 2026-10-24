@@ -39,7 +39,10 @@ for (const width of [390, 1440]) {
     await expect(alert).toHaveAttribute('aria-live', 'assertive');
     await expect(page.getByRole('button', { name: 'Em alta', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Não foi possível carregar os NFTs' })).toHaveCount(0);
+    const failedRetry = page.waitForResponse((response) => response.url().includes('/api/nfts?') && response.status() === 503);
     await page.getByRole('button', { name: 'Tentar novamente', exact: true }).click();
+    await failedRetry;
+    await expect(page.getByRole('region', { name: 'Recuperar carregamento' })).toHaveAttribute('aria-busy', 'false');
     await expect(alert).toHaveText(loadMessage);
     await expect(alert).toHaveCount(1);
     await page.evaluate(() => localStorage.removeItem('kurio:mock-scenario'));
@@ -82,7 +85,9 @@ for (const path of ['/nfts/nft-1', '/cart']) {
 }
 
 test('leaving a failed route clears its toast and 404 stays distinct', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('kurio:navigation-scenario', 'error'));
+  await page.goto('/');
+  await expect(page.getByTestId('nft-card')).toHaveCount(9);
+  await page.evaluate(() => localStorage.setItem('kurio:navigation-scenario', 'error'));
   await page.goto('/nfts/nft-1');
   await expect(page.getByRole('alert')).toHaveText(loadMessage);
   await page.getByRole('link', { name: 'Voltar ao início', exact: true }).click();

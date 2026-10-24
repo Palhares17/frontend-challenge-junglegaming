@@ -26,6 +26,7 @@ Use Node.js 22.19.0 (registrado em `.node-version`) e pnpm 11.23.0. Instale as d
 | `pnpm test` | Precisão ETH, estado na URL, destinos seguros e contratos REST via MSW/Axios |
 | `pnpm test:e2e` | Chromium: catálogo, rotas, sessão, mocks persistentes, Socket.IO, prévia, teclado e regressão visual |
 | `pnpm test:e2e:ui` | Interface interativa do Playwright |
+| `pnpm test:production` | Build otimizado e regressão de posicionamento dos diálogos |
 | `pnpm assets:prepare` | Gerar originais WebP sem perdas e variantes responsivas com qualidade 90 |
 | `pnpm audit:lighthouse` | Três medições por página/perfil; requer build servido em 4184 |
 | `pnpm ui add <componente>` | Adicionar um primitivo shadcn em `src/core/components/ui/` |
@@ -74,6 +75,8 @@ Pedidos históricos da Ana: `demo-confirmed`, `demo-pending`, `demo-declined`; d
 Para falhas das novas consultas e da sessão, use `localStorage.setItem('kurio:navigation-scenario', 'slow')` (1.800 ms) ou `'error'` (HTTP 503) e recarregue. Para recuperar, remova essa chave e use **Tentar novamente**; no login, reenvie o formulário. O catálogo continua usando os cenários próprios descritos acima.
 
 Falhas no envio do login aparecem em um toast com `react-hot-toast`, no topo da tela, sem deslocar os campos. A mensagem distingue credenciais inválidas de falha do serviço, desaparece após cinco segundos e é removida ao reenviar ou sair do login. Os campos permanecem preenchidos para nova tentativa. Evidências na [spec do toast de login](specs/004-toast-erro-login.md).
+
+Falhas de carregamento do catálogo e das rotas também usam um toast, com controles persistentes de **Tentar novamente** e retorno no layout. Uma atualização que falha conserva dados válidos já carregados. Login/cadastro continuam disponíveis mesmo se o catálogo do fundo falhar. Recursos inexistentes (404) mantêm identificação própria. Erros nativos como `ERR_SOCKET_NOT_CONNECTED`, anteriores ao carregamento do documento, não podem ser substituídos por um toast React; confira se `pnpm dev` está ativo e recarregue. Diagnóstico e evidências na [spec 011](specs/011-toast-falhas-carregamento.md).
 
 Para expirar deterministicamente a sessão, remova `kurio:mock-session` do localStorage e navegue para uma tela privada ou recarregue. O reset integral agora é `POST /api/mock/reset` com `{preset:"default"}` ou `{preset:"populated"}`, seguido de refresh; confira o comando de console em [MOCK_API](docs/MOCK_API.md). Ele restaura banco, sessão e cenários sem limpar chaves externas. A API simulada persiste os dados dos recursos e digests de senha, sem senhas em claro; essa persistência não é autenticação de produção.
 

@@ -154,9 +154,10 @@ test('expired session redirects on navigation and supports resuming the same des
 }) => {
   await openLogin(page);
   const recoveredSession = page.waitForResponse(
-    (response) =>
+    async (response) =>
       response.url().endsWith('/api/session') &&
-      response.request().method() === 'GET',
+      response.request().method() === 'GET' &&
+      (await response.json()).user?.email === 'ana@kurio.test',
   );
   await login(page);
   expect((await (await recoveredSession).json()).user.email).toBe(

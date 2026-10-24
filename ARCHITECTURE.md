@@ -167,3 +167,9 @@ Um HTML estático pode ser mais antigo que o staleTime. As datas de atualizaçã
 Evidências finais de performance: medianas Lighthouse mobile 98 (início) e 96 (detalhe); desktop 100/100, demais categorias 100. Relatórios de três medições por página/perfil em docs/lighthouse. A configuração conserva o perfil mobile padrão da ferramenta e usa os assets e funcionalidades normais. O cache público e a sessão foram testados após refresh e com relógio adiantado, sem erro de hidratação. O build com `.env.production` desativando mocks também foi verificado numa cópia temporária: somente SPA/fallback, sem HTML de fixtures.
 
 Referências de implementação: [SSR do TanStack Router](https://tanstack.com/router/latest/docs/framework/react/guide/ssr) e [integração de dados/cache](https://tanstack.com/router/latest/docs/framework/react/guide/external-data-loading), conferidas também nas fontes instaladas.
+
+## Recuperação de carregamento e diálogos no build — 24/10/2026
+
+A spec 011 centraliza o aviso de falha em `usePageLoadError`, com ID estável e limpeza na recuperação/unmount. `LoadRecovery` preserva ações acessíveis após o toast expirar. Catálogo mantém dados válidos se um refetch falhar; falhas de rota preservam o shell e o retry com `router.invalidate()`/reset da boundary do Query. Guardas continuam bloqueando conteúdo privado em falhas da sessão; 404 permanece distinto. O catálogo decorativo não é mais uma consulta suspensiva que bloqueia login/cadastro.
+
+`DialogContent` oferece `positioning="custom"` para a autenticação, que omite as classes de deslocamento do centro genérico. Isso evita depender de um reset CSS de `translate` transformado em `transform` durante a otimização, que deixava dois deslocamentos ativos no build publicado. Diálogos genéricos mantêm o posicionamento padrão. A suíte `tests/production/dialog.spec.ts`, com configuração própria, verifica o build servido pelo preview, além dos testes normais em Vite dev.
