@@ -1,6 +1,6 @@
 # 011 — Falhas de carregamento com toast e recuperação
 
-Status: em validação
+Status: concluída
 Atualização: 2026-10-24
 Referências: README §3, §8–9; STYLE_GUIDE (tokens e navegação); docs/SDD.md.
 
@@ -33,7 +33,7 @@ Tratar falhas de carregamento com toast acessível, preservando navegação e no
 - [x] Implementar feedback compartilhado e remover dependência bloqueante na autenticação.
 - [x] Testar recuperação, URLs diretas, sessão, recursos inexistentes e navegação.
 - [x] Executar tipos, lint, build e testes pertinentes; atualizar documentação/evidências.
-- [ ] Publicar e verificar a geometria do modal na Vercel.
+- [x] Publicar e verificar a geometria do modal na Vercel.
 
 ## Evidências
 
@@ -44,7 +44,7 @@ Tratar falhas de carregamento com toast acessível, preservando navegação e no
 | CA-03 | `page-load-errors` e `navigation`: falhas de detalhe/carrinho/sessão e retry; 404 | Recuperação sem reload, navegação disponível, sessão indisponível não expõe perfil; inexistentes permanecem distintos |
 | CA-04 | `page-load-errors`: catálogo falha no login/cadastro em 390/1440 | Formulários acessíveis; login válido conclui na API e abre perfil sem depender do catálogo |
 | CA-05 | `page-load-errors`, `auth-toast`: falhas repetidas/saída/recuperação | Avisos únicos, removidos na saída/sucesso; notificações de credenciais continuam independentes |
-| CA-06 | `tests/production/dialog.spec.ts`: build preview em três viewports | Sete testes passaram: login/cadastro dentro das margens, fechar funcional e busca genérica centralizada. Inspeção visual do build em 1280×720: topo 96 px, esquerda 390 px, translate individual `none`. Validação publicada pendente |
+| CA-06 | `tests/production/dialog.spec.ts`: build preview e Vercel em três viewports | Sete testes passaram no preview e os mesmos sete no endereço público: login/cadastro dentro das margens, fechar funcional e busca genérica centralizada. No build local e na Vercel em 1280×720: topo 96 px, esquerda 390 px, translate individual `none` |
 
 Inspeção: código, URL, screenshot enviado e CSS computado local/publicado/build. Execução manual: nenhuma; interações com navegador por automação, capturas inspecionadas visualmente.
 
@@ -52,4 +52,6 @@ Testes automatizados: `pnpm test` — 62 passaram. `pnpm test:e2e tests/page-loa
 
 `pnpm typecheck`, `pnpm lint`, `pnpm build` e `git diff --check` passaram. O build gerou 240 páginas públicas; o sandbox registrou restrição ao socket HMR auxiliar, mas a pré-renderização concluiu com saída zero. A validação de produção utilizou servidor preview fora do sandbox. Não executado: suíte E2E integral, novo Lighthouse, outros navegadores/leitor de tela e reprodução da causa de baixo nível de `ERR_SOCKET_NOT_CONNECTED` (falha transitória já recuperada).
 
-Pendência: publicar e conferir a versão corrigida no endereço público.
+Publicação: commit `78bf9dc`, deploy `frontend-challenge-junglegaming-1ohg7t7a3.vercel.app` READY, alias público [Kurio](https://frontend-challenge-junglegaming-gamma.vercel.app). `PRODUCTION_BASE_URL=https://frontend-challenge-junglegaming-gamma.vercel.app pnpm exec playwright test --config playwright.production.config.ts --reporter=list --output=/private/tmp/kurio-modal-live` — sete passaram em 16 s; capturas de login/cadastro em cada viewport na pasta indicada. Inspeção visual do modal corrigido e CSS computado conferidos também no navegador conectado. Nenhum reset dos dados do usuário foi feito.
+
+Pendências dos critérios: nenhuma. Limites de diagnóstico e verificações não executadas permanecem registrados acima.
