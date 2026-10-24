@@ -1,0 +1,17 @@
+.mobile-navigation {
+  position: fixed;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  isolation: isolate;
+}
+.mobile-navigation-background {
+  position: absolute;
+  z-index: -1;
+  inset: -9px -30px -20px;
+  background: url('/assets/figma/mobile-vector.svg') center bottom / 100% 155px
+    no-repeat;
+  pointer-events: none;
+}

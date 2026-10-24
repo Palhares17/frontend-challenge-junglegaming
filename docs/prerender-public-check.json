@@ -1,0 +1,18 @@
+{
+  "url": "https://frontend-challenge-junglegaming-gamma.vercel.app",
+  "date": "2026-10-24T16:38:06.189Z",
+  "results": [
+    {
+      "path": "/",
+      "publicHtml": true,
+      "olderCacheHydrates": true,
+      "pageErrors": []
+    },
+    {
+      "path": "/nfts/nft-1",
+      "publicHtml": true,
+      "olderCacheHydrates": true,
+      "pageErrors": []
+    }
+  ]
+}

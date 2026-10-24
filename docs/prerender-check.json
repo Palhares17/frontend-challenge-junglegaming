@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:4184",
+  "date": "2026-10-24T16:32:55.127Z",
+  "results": [
+    {
+      "path": "/",
+      "publicHtml": true,
+      "olderCacheHydrates": true,
+      "pageErrors": []
+    },
+    {
+      "path": "/nfts/nft-1",
+      "publicHtml": true,
+      "olderCacheHydrates": true,
+      "pageErrors": []
+    }
+  ]
+}

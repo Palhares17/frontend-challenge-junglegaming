@@ -1,0 +1,121 @@
+.nft-item-identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+}
+.nft-item-identity > img {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+.nft-item-identity h3 {
+  overflow-wrap: anywhere;
+}
+.order-items-heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-bottom: 0.3px solid var(--kurio-border-soft);
+  padding-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+}
+.order-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 70px;
+  background: var(--card);
+  padding-right: 12px;
+}
+.order-item .nft-item-identity h3 {
+  font-size: 15px;
+}
+.order-item .nft-item-identity p {
+  font-size: 12px;
+}
+.order-item .order-item-quantity {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+.order-item > span:last-child {
+  font-size: 18px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+.order-totals {
+  display: grid;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 20px;
+}
+.order-totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.order-totals dd {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.order-totals .network-fee-note {
+  display: block;
+  text-align: right;
+  line-height: 16px;
+  color: var(--accent-foreground);
+  font-size: 12px;
+}
+.order-totals .order-total {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 0.3px solid var(--kurio-border-soft);
+  font-size: 16px;
+  font-weight: 700;
+}
+.order-total dd {
+  font-size: 18px;
+  color: var(--accent-foreground);
+}
+.receipt-items .order-items-heading {
+  grid-template-columns: 1fr 100px 116px;
+}
+.receipt-items .order-item {
+  background: transparent;
+  padding: 0;
+}
+@media (max-width: 479px) {
+  .order-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+  .order-item .nft-item-identity {
+    gap: 8px;
+  }
+  .order-item .nft-item-identity > img {
+    width: 56px;
+    height: 56px;
+  }
+  .order-item > span:last-child {
+    font-size: 15px;
+  }
+  .order-item .order-item-quantity {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    padding-bottom: 8px;
+  }
+  .order-item .nft-item-identity {
+    grid-row: span 2;
+  }
+  .receipt-items .order-items-heading {
+    grid-template-columns: 1fr auto;
+  }
+  .receipt-items .order-items-heading > span:nth-child(2) {
+    display: none;
+  }
+}

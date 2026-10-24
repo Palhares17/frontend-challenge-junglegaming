@@ -1,0 +1,42 @@
+.collection-strip {
+  margin-top: 64px;
+}
+.collection-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+  margin-top: 32px;
+}
+@media (min-width: 768px) {
+  .collection-strip-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .collection-strip {
+    margin-top: 96px;
+  }
+  .collection-strip-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .collection-strip .nft-card-artwork {
+    aspect-ratio: 219 / 255;
+  }
+  .collection-strip .nft-card[data-variant='portrait'] .nft-card-image {
+    width: calc(100% - 29px);
+    height: calc(100% - 12px);
+    margin-left: 8px;
+    border-radius: 11px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-strip .nft-card-caption h3 {
+    font-size: 14px;
+  }
+  .collection-strip .nft-card-caption p {
+    margin-top: 6px;
+    font-size: 16px;
+  }
+}

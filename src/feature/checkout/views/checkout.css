@@ -1,0 +1,172 @@
+.checkout-shell {
+  padding-bottom: 128px;
+}
+.checkout-review {
+  min-width: 0;
+}
+.saved-wallet-card {
+  position: relative;
+  min-height: 93px;
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow-wallet-mobile);
+}
+.saved-wallet-choice {
+  display: flex;
+  width: 100%;
+  min-height: 93px;
+  align-items: center;
+  gap: 19px;
+  padding: 14px 40px 12px 19px;
+  text-align: left;
+  font-size: 14px;
+}
+.saved-wallet-choice strong {
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+}
+.saved-wallet-more {
+  position: absolute;
+  right: 0;
+  top: 24px;
+  display: flex;
+  width: 40px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.wallet-provider-selector {
+  margin-top: 16px;
+}
+.wallet-provider-option {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 65px;
+  align-items: center;
+  gap: 11px;
+  border-radius: 15px;
+  background: var(--card);
+  padding: 12px 16px 12px 14px;
+  box-shadow: var(--shadow-newsletter);
+  text-align: left;
+}
+.wallet-provider-mark {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.wallet-provider-mark > span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-foreground);
+}
+.wallet-provider-name {
+  flex: 1;
+  font-size: 14px;
+  line-height: 16px;
+}
+.wallet-provider-desktop-radio,
+.wallet-provider-chip {
+  display: none;
+}
+.checkout-confirm-action {
+  position: fixed;
+  z-index: 20;
+  left: 28px;
+  right: 28px;
+  bottom: max(32px, env(safe-area-inset-bottom));
+  width: calc(100% - 56px);
+  height: 60px;
+  border-radius: 40px;
+  background: linear-gradient(
+    100.3663deg,
+    var(--primary) 3.9595%,
+    rgb(210 138 76 / 80%) 121.97%
+  );
+}
+@media (min-width: 1024px) {
+  .checkout-shell {
+    padding-bottom: 24px;
+  }
+  .checkout-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 405px;
+    gap: 32px;
+    margin-top: 32px !important;
+  }
+  .collector-fields {
+    gap: 24px;
+  }
+  .collector-checkout-form .form-label {
+    min-height: 29px;
+    margin-bottom: 0;
+  }
+  .collector-checkout-form .collector-fields {
+    row-gap: 8px;
+  }
+  .wallet-provider-selector {
+    margin-top: 12px;
+  }
+  .wallet-provider-option {
+    min-height: 45px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: none;
+    padding: 10px 12px;
+    box-shadow: none;
+    gap: 12px;
+  }
+  .wallet-provider-option[data-checked] {
+    border-color: var(--primary);
+  }
+  .wallet-provider-desktop-radio {
+    display: block;
+    order: -1;
+  }
+  .wallet-provider-mark,
+  .wallet-provider-mobile-radio {
+    display: none;
+  }
+  .wallet-provider-name {
+    font-size: 15px;
+  }
+  .wallet-provider-option:first-child .wallet-provider-name {
+    display: none;
+  }
+  .wallet-provider-chip {
+    display: flex;
+    min-height: 26px;
+    align-items: center;
+    border: 1px solid var(--kurio-border-soft);
+    border-radius: 6px;
+    padding-inline: 8px;
+    background: var(--secondary);
+    color: var(--accent-foreground);
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .checkout-confirm-action {
+    position: static;
+    width: 100%;
+    height: 45px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background: var(--primary);
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1023px) {
+  form.checkout-body {
+    display: grid;
+    gap: 32px;
+  }
+}

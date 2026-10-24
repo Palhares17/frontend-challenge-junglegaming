@@ -1,0 +1,10 @@
+.git
+.agents
+.pnpm-store
+node_modules
+dist
+tests
+docs
+playwright-report
+test-results
+.env*

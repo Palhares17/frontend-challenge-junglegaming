@@ -1,0 +1,30 @@
+.design-preview-toolbar {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  border-bottom: 1px solid var(--kurio-border-soft);
+  background: var(--card);
+  padding: 12px 24px;
+  font-size: 13px;
+}
+.design-preview-toolbar label {
+  font-weight: 700;
+}
+.design-preview-toolbar select {
+  min-height: 36px;
+  max-width: 100%;
+  border: 1px solid var(--input);
+  border-radius: 6px;
+  background: var(--background);
+  padding: 6px 12px;
+  color: var(--foreground);
+}
+.design-preview-toolbar p {
+  color: var(--muted-foreground);
+}
+.design-preview-capture {
+  display: none;
+}

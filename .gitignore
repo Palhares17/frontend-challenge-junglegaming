@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+*.local
+.DS_Store
+test-results/
+playwright-report/
+.tanstack/
+.pnpm-store/
+.vercel/
+.env*
+!.env.example

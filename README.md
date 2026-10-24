@@ -4,6 +4,101 @@ Implemente o **NFT Marketplace** em React e TypeScript, seguindo o [layout no Fi
 
 O desafio avalia fidelidade visual, qualidade das interações, integração com APIs, gerenciamento de estado assíncrono, tempo real, acessibilidade e performance.
 
+Aplicação publicada: [Kurio na Vercel](https://frontend-challenge-junglegaming-gamma.vercel.app). A validação pública automatizada de compra, refresh e Socket.IO está registrada em [deployment-smoke.json](docs/deployment-smoke.json).
+
+Código-fonte: [Palhares17/frontend-challenge-junglegaming](https://github.com/Palhares17/frontend-challenge-junglegaming).
+
+## Executando o projeto
+
+As nove telas estão integradas na aplicação principal com TanStack Router, Query, Axios, MSW e Socket.IO. Catálogo, cadastro/login/logout, favoritos, carrinho/cupom, perfil/avatar/senha e carteiras persistem na simulação. A compra usa conexão simulada de carteira, revisão da cotação, pedido idempotente, acompanhamento e recibo confirmado; preço/estoque e pedidos são sincronizados por eventos e reconciliados com REST. Blockchain, pagamento real, login social e recuperação de senha por e-mail não fazem parte desta demonstração.
+
+A referência visual é o [Figma fornecido](https://www.figma.com/design/7jzy1utqt6Et0TTEOYmkcp/Untitled?node-id=1-661), diferente do link original. Contratos e cenários: [MOCK_API](docs/MOCK_API.md). Evidências finais: [conta/carrinho](specs/007-fluxos-conta-carrinho.md), [compra/tempo real](specs/008-compra-tempo-real.md) e [validação/entrega](specs/009-validacao-entrega.md).
+
+Use Node.js 22.19.0 (registrado em `.node-version`) e pnpm 11.23.0. Instale as dependências com `pnpm install --frozen-lockfile` e inicie com `pnpm dev`.
+
+| Comando | Finalidade |
+| --- | --- |
+| `pnpm dev` | Servidor de desenvolvimento |
+| `pnpm typecheck` | Verificação de tipos |
+| `pnpm lint` | Análise estática com oxlint |
+| `pnpm build` | Verificação de tipos e build otimizado em `dist/` |
+| `pnpm preview` | Servir o build otimizado localmente |
+| `pnpm test` | Precisão ETH, estado na URL, destinos seguros e contratos REST via MSW/Axios |
+| `pnpm test:e2e` | Chromium: catálogo, rotas, sessão, mocks persistentes, Socket.IO, prévia, teclado e regressão visual |
+| `pnpm test:e2e:ui` | Interface interativa do Playwright |
+| `pnpm assets:prepare` | Gerar originais WebP sem perdas e variantes responsivas com qualidade 90 |
+| `pnpm audit:lighthouse` | Três medições por página/perfil; requer build servido em 4184 |
+| `pnpm ui add <componente>` | Adicionar um primitivo shadcn em `src/core/components/ui/` |
+
+Os estilos globais e os tokens ficam em `src/index.css`. Consulte `STYLE_GUIDE.md` para valores observados, decisões de implementação e pendências; o guia inclui registros históricos de etapas anteriores. A fonte Roboto Mono é servida localmente pelo build; sua licença acompanha a distribuição em `public/fonts/OFL-Roboto-Mono.txt`. As opções de API e ativação dos mocks estão em `.env.example`; por padrão, a aplicação usa `/api` e ativa MSW, exceto quando `VITE_ENABLE_MOCKS=false`.
+
+Para executar os E2E pela primeira vez, instale o navegador com `pnpm exec playwright install chromium`. O Playwright inicia o Vite na porta 4173 e gera relatório em `playwright-report/`; falhas preservam trace e screenshot em `test-results/`. As referências visuais de 390, 768 e 1440 px estão em `tests/home.spec.ts-snapshots/`, `tests/design.spec.ts-snapshots/` e `tests/product-design.spec.ts-snapshots/` e foram produzidas no Chromium/macOS. Atualize-as intencionalmente com `pnpm test:e2e --update-snapshots` após conferir as imagens. Lighthouse: medianas de Performance 98/96 em mobile e 100/100 em desktop (início/detalhe); demais categorias 100. [Relatórios, metodologia e limites](docs/lighthouse/README.md). As baselines detectam regressões da implementação; não substituem a comparação com os frames do Figma.
+
+A [auditoria de UI e UX](docs/auditoria-ui-ux.md) registra 11 defeitos e seu acompanhamento. As correções e os critérios verificáveis estão na [spec 005](specs/005-correcoes-auditoria-ui-ux.md); os testes de reprodução ficam em `tests/ui-audit.spec.ts` e podem ser executados com `pnpm test:e2e tests/ui-audit.spec.ts`.
+
+### Prévia isolada para revisão visual
+
+Com o Vite iniciado, abra **`/ui-preview.html`** no mesmo servidor e use o seletor de telas: detalhe do NFT, carrinho, pagamento, confirmação, login, cadastro, perfil e carteiras. A home também está disponível no seletor, com histórico em memória para não mudar a URL da prévia. A entrada principal `/` abre o catálogo e seus links navegam pelas rotas de produto.
+
+A prévia usa estado local e espécimes em `src/core/preview/mocks/design.fixtures.ts`. `?screen=nft` seleciona a apresentação inicial; `&capture=1` oculta a barra de revisão para comparar capturas. Esses parâmetros pertencem à ferramenta de revisão e não criam rotas TanStack. O build emite `index.html`, `ui-preview.html`, `spa.html` e HTML inicial dos 239 detalhes públicos. O runtime continua uma SPA estática; páginas privadas e demais rotas usam o fallback `spa.html`.
+
+Galeria, ampliação, abas, quantidade do detalhe, seleções de edição/carteira e visibilidade de senha podem ser inspecionadas. Operações de conta, carrinho, cupom e compra apresentam feedback de indisponibilidade. Os formulários têm labels e validação nativa de preenchimento, sem validar contratos de negócio. Os dados do recibo são ilustrativos; os totais mobile reproduzem o Figma, cuja soma de itens é inconsistente. Não são uma cotação nem um pedido efetivo.
+
+Perfil, carteiras e confirmação em mobile, os layouts intermediários e a continuação do detalhe abaixo do recorte mobile são adaptações propostas, pois não há frames equivalentes. A documentação distingue essas decisões dos valores medidos.
+
+### Cenários locais do catálogo
+
+No console do navegador, execute `localStorage.setItem('kurio:mock-scenario', 'slow')` e recarregue para ver o carregamento. Substitua `slow` por `empty` (sem resultados), `error` (HTTP 503) ou `race` (busca Emerald em 1.500 ms e demais buscas em 100 ms). O cenário padrão responde em 250 ms; `slow` responde em 1.800 ms. Para restaurar o cenário padrão: `localStorage.removeItem('kurio:mock-scenario')` e recarregue. Esses cenários não alteram os dados; os novos controles de inventário descritos na API simulada permitem alterações persistentes de preço/estoque, revertidas pelo reset.
+
+Os E2E usam contextos isolados e passam pelo Service Worker MSW e pelo Axios. O cenário de erro também permite restaurar o cenário padrão e usar **Tentar novamente**, sem recarregar. Na aplicação principal, os controles de negócio estão conectados à API. Para experimentar: abra um NFT, selecione a edição e compre/adicione ao carrinho; altere quantidades e aplique `KURIO10`; entre, cadastre uma carteira Ethereum válida (exemplo fictício: `0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`), conecte-a e use **Revisar compra** antes de **Confirmar compra**. O pedido evolui para confirmado em aproximadamente dois segundos no cenário padrão. Abra **Ver recibo**. Em timeout, use **Recuperar pedido**: a tentativa é preservada por usuário e aba, inclusive após refresh.
+
+Favoritos são acessíveis no detalhe, no catálogo e pelo coração da navegação mobile. Perfil e carteiras permitem edição, com validação da API e persistência. Newsletter, artigos e demais ações auxiliares fora do escopo continuam com feedback de indisponibilidade.
+
+### Rotas e sessão da demonstração
+
+| URL | Acesso e comportamento atual |
+| --- | --- |
+| `/` | Público; catálogo e parâmetros de busca existentes |
+| `/nfts/nft-1` | Público; detalhe por identificador da API; inexistente mostra recuperação |
+| `/cart` | Público; edição, remoção e cupom; persistente e transferido ao autenticar |
+| `/login`, `/register` | Públicos; cadastro e login integrados, modal desktop e página mobile |
+| `/checkout` | Privado; conexão simulada, cotação, revisão e envio idempotente |
+| `/account/profile`, `/account/wallets` | Privados; edição persistente de perfil/avatar/senha e até duas carteiras |
+| `/orders/:orderId` | Privado; estado do pedido histórico |
+| `/orders/:orderId/confirmation` | Privado; recibo somente para resposta `confirmed` da API |
+
+Use `ana@kurio.test` ou `bruno@kurio.test`, ambos com senha fictícia `Kurio123!`. A sessão simulada dura 30 minutos e sobrevive a refresh. Guardas recuperam a sessão antes das telas privadas e preservam a URL interna de retorno, incluindo query/hash; destinos externos e ciclos de autenticação são descartados. **Sair**, na navegação da conta (também disponível em mobile), encerra a sessão e remove consultas privadas do cache. Sessões são reavaliadas ao navegar, focar a janela e recarregar.
+
+Pedidos históricos da Ana: `demo-confirmed`, `demo-pending`, `demo-declined`; do Bruno: `demo-bruno` (confirmado). Por exemplo, abra `/orders/demo-confirmed` e entre como Ana para consultar o estado e seguir para o recibo. O outro usuário recebe 404. Esses registros históricos são cenários de leitura. O botão de compra cria novos pedidos com snapshot imutável. Estados pendente/recusado nunca mostram um recibo confirmado.
+
+Para falhas das novas consultas e da sessão, use `localStorage.setItem('kurio:navigation-scenario', 'slow')` (1.800 ms) ou `'error'` (HTTP 503) e recarregue. Para recuperar, remova essa chave e use **Tentar novamente**; no login, reenvie o formulário. O catálogo continua usando os cenários próprios descritos acima.
+
+Falhas no envio do login aparecem em um toast com `react-hot-toast`, no topo da tela, sem deslocar os campos. A mensagem distingue credenciais inválidas de falha do serviço, desaparece após cinco segundos e é removida ao reenviar ou sair do login. Os campos permanecem preenchidos para nova tentativa. Evidências na [spec do toast de login](specs/004-toast-erro-login.md).
+
+Para expirar deterministicamente a sessão, remova `kurio:mock-session` do localStorage e navegue para uma tela privada ou recarregue. O reset integral agora é `POST /api/mock/reset` com `{preset:"default"}` ou `{preset:"populated"}`, seguido de refresh; confira o comando de console em [MOCK_API](docs/MOCK_API.md). Ele restaura banco, sessão e cenários sem limpar chaves externas. A API simulada persiste os dados dos recursos e digests de senha, sem senhas em claro; essa persistência não é autenticação de produção.
+
+### Dados simulados completos
+
+A [API simulada](docs/MOCK_API.md) documenta todos os endpoints, corpos, erros e controles. O preset `default` mantém a demonstração atual vazia; `populated` oferece itens no carrinho visitante e carteiras dos dois usuários. Login transfere os itens do visitante para a conta. `KURIO10` é o cupom válido e `EXPIRED` está expirado.
+
+Use `localStorage.setItem('kurio:api-scenario', 'payment-declined')` para novos pedidos recusados, `'order-pending'` para manter pendente ou `'timeout-after-create'` para perder a primeira resposta depois da criação. `offline`, `error`, `timeout`, `session-expired`, `validation`, `conflict` e cenários de conexão de carteira também estão disponíveis. Restaure com `'default'` ou reset; detalhes e efeitos em [MOCK_API](docs/MOCK_API.md).
+
+Os eventos usam `socket.io-client` e binding MSW, transporte WebSocket em `/socket.io/kurio`. Testes verificam eventos, duplicatas/antigos, reconexão e isolamento. A aplicação consome os eventos no cache, descarta versões antigas/duplicadas e reconcilia consultas ativas ao reconectar. Pedidos pendentes também são consultados a cada dois segundos, com interrupção ao atingir estado terminal.
+
+### Acesso direto no deploy
+
+O host estático deve servir os arquivos existentes primeiro (`/assets/*`, `/mockServiceWorker.js`, `/ui-preview.html`) e encaminhar as demais URLs da aplicação para `/spa.html`, mantendo o caminho original. No Netlify, a regra de fallback é `/* /spa.html 200` em `public/_redirects` (sem forçar sobrescrita dos arquivos). Na Vercel, configure o equivalente de fallback SPA; em um servidor próprio, use `try_files $uri $uri/ /spa.html`. `/api/*` precisa continuar destinado ao backend quando os mocks estiverem desativados.
+
+Vite dev/preview oferecem fallback local; isso não comprova a configuração de um host publicado. A configuração Vercel está versionada em `vercel.json`. Na publicação, valide uma URL de detalhe e uma URL privada abertas diretamente, seu refresh e a disponibilidade do Service Worker.
+
+Consulte [ARCHITECTURE.md](ARCHITECTURE.md) para composição dos componentes, contrato REST, cache e diferenças visuais adotadas. O enunciado original está mantido abaixo.
+
+Verificação final: **62 testes unitários e 90 E2E passaram**, além de typecheck, lint, build e smoke público. [Relatório e limites](docs/testing/README.md).
+
+## Desenvolvimento com specs curtas
+
+Seguimos um [modelo enxuto de SDD](docs/SDD.md): uma spec por mudança de comportamento, com objetivo, limites, critérios de aceite, tarefas e evidências. Use o [template](specs/_template.md) e consulte o [piloto do catálogo](specs/001-validacao-catalogo.md). Ajustes triviais dispensam spec. As [orientações para agentes](AGENTS.md) aplicam esse fluxo ao trabalho no repositório.
+
 ## 1. Escopo
 
 Entregue os fluxos de descoberta, compra e conta do colecionador, com versões desktop e mobile. APIs, autenticação, carteiras e pagamentos devem funcionar com dados simulados. Integrações reais com blockchain, extensões de carteira e gateways de pagamento estão fora do escopo.

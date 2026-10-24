@@ -1,0 +1,302 @@
+@import 'tailwindcss' source('./');
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/roboto-mono/wght.css';
+
+@source "../index.html";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Measured Figma values. Keep source colors separate from shadcn slots. */
+  --kurio-ink: #140d0a;
+  --kurio-foreground: #f5f1eb;
+  --kurio-primary: #d28a4c;
+  --kurio-text-accent: #e89b55;
+  --kurio-text-secondary: #cfb28c;
+  --kurio-secondary: #b39463;
+  --kurio-surface-card: #241612;
+  --kurio-surface-dark: #38220f;
+  --kurio-surface-control: #2f1d15;
+  --kurio-border: #3f2319;
+  --kurio-border-soft: #55321f;
+  --kurio-required: #f0805f;
+  --kurio-text-editorial: #f7f3ec;
+
+  /* Semantic mapping. The only theme in the reference is dark. */
+  --background: var(--kurio-ink);
+  --foreground: var(--kurio-foreground);
+  --card: var(--kurio-surface-card);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: var(--kurio-primary);
+  --primary-foreground: var(--background);
+  --secondary: var(--kurio-surface-dark);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--card);
+  --muted-foreground: var(--kurio-text-secondary);
+  --accent: var(--kurio-surface-control);
+  --accent-foreground: var(--kurio-text-accent);
+  --border: var(--kurio-border);
+  --ring: var(--primary);
+  --radius: 0.375rem;
+
+  /* Proposed accessibility mapping: visible control edges and error text. */
+  --input: var(--kurio-secondary);
+  --destructive: var(--kurio-required);
+  --destructive-foreground: var(--background);
+
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  /* Proposed interaction timing; the Figma does not specify motion. */
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-slow: 280ms;
+  --motion-shimmer: 1600ms;
+  --ease-ui: cubic-bezier(0.2, 0, 0, 1);
+  --skeleton-highlight: color-mix(in srgb, var(--foreground) 8%, transparent);
+}
+
+@theme inline {
+  /* Replace the template palette, type ramp, radii and shadows with Kurio. */
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-text-accent: var(--kurio-text-accent);
+  --color-text-secondary: var(--kurio-text-secondary);
+  --color-text-subtle: var(--kurio-secondary);
+  --color-text-editorial: var(--kurio-text-editorial);
+  --color-surface-dark: var(--kurio-surface-dark);
+  --color-surface-control: var(--kurio-surface-control);
+  --color-border-soft: var(--kurio-border-soft);
+  --color-required: var(--kurio-required);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: 'Roboto Mono Variable', monospace;
+  --font-mono: 'Roboto Mono Variable', monospace;
+  --font-ui: 'Roboto Mono Variable', monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Measured sizes. 'normal' preserves Figma's Auto line height. */
+  --text-display: 2.6875rem;
+  --text-display--line-height: 4.375rem;
+  --text-display--font-weight: 700;
+  --text-display-mobile: 1.125rem;
+  --text-display-mobile--line-height: 1.8125rem;
+  --text-display-mobile--font-weight: 700;
+  --text-brand: 0.875rem;
+  --text-brand--line-height: normal;
+  --text-brand-mobile: 2rem;
+  --text-brand-mobile--line-height: normal;
+  --text-editorial: 1.75rem;
+  --text-editorial--line-height: normal;
+  --text-editorial--font-weight: 700;
+  --text-featured: 1.5rem;
+  --text-featured--line-height: 2rem;
+  --text-featured--font-weight: 700;
+  --text-promo: 1.125rem;
+  --text-promo--line-height: 1.5rem;
+  --text-promo--font-weight: 700;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375rem;
+  --text-body-relaxed: 0.875rem;
+  --text-body-relaxed--line-height: 1.5rem;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-badge: 0.625rem;
+  --text-badge--line-height: normal;
+  --text-filter: 0.9375rem;
+  --text-filter--line-height: 2.5rem;
+
+  /* shadcn text utilities keep their measured size, with readable leading. */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.75rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --tracking-brand: 0.1em;
+
+  /* A 4px unit supports the measured 6/10/28px gaps via half steps. */
+  --spacing: 0.25rem;
+  --spacing-content: 75rem;
+  --spacing-sidebar: 19.375rem;
+  --spacing-gutter-home: 1.5rem;
+  --spacing-gutter-form: 1.75rem;
+  --spacing-section: 6rem;
+  --spacing-field: 3.125rem;
+  --spacing-action: 3.75rem;
+
+  /* Distinct measured geometries, not a single radius for all components. */
+  --radius-sm: 0.1875rem;
+  --radius-md: 0.25rem;
+  --radius-lg: var(--radius);
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+  --radius-3xl: 1rem;
+  --radius-4xl: 1.5rem;
+  --radius-input: 0.1875rem;
+  --radius-input-mobile: 0.625rem;
+  --radius-pagination: 0.25rem;
+  --radius-button: 0.375rem;
+  --radius-promo: 0.5rem;
+
+  --shadow-newsletter: 0 0 20px 0 rgb(10 6 4 / 45%);
+  --shadow-quantity: 0 4px 12px -2px rgb(20 13 10 / 14.9%);
+  --shadow-quantity-large: 0 6.6px 19.8px -3.3px rgb(20 13 10 / 14.9%);
+  --shadow-card-mobile: 0 6px 20px 0 rgb(10 6 4 / 45%);
+  --shadow-navigation: 0 -10px 30px 0 rgb(10 6 4 / 45%);
+  --shadow-wallet-mobile: 0 20px 20px 0 rgb(10 6 4 / 45%);
+
+  --animate-shimmer: shimmer var(--motion-shimmer) linear infinite;
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@layer base {
+  /* Tailwind Preflight owns the reset: do not add a competing reset sheet. */
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    font-family: var(--font-ui);
+    font-synthesis: none;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground text-body antialiased;
+    min-height: 100svh;
+  }
+
+  #root {
+    min-height: 100svh;
+    isolation: isolate;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    color: var(--primary-foreground);
+    background: var(--primary);
+  }
+
+  :where(button, [role='button']):not(:disabled):not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+
+  :where(button, input, select, textarea):disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Functional shimmer is a proposal, not an approximation of Figma gradients. */
+@utility skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--muted);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    pointer-events: none;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--skeleton-highlight),
+      transparent
+    );
+    animation: var(--animate-shimmer);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .skeleton-shimmer::after {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
+}

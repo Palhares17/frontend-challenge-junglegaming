@@ -1,0 +1,180 @@
+{
+  "environment": {
+    "node": "v22.19.0",
+    "os": "Darwin 27.0.0 arm64",
+    "chromium": "156.0.8078.4",
+    "lighthouse": "13.5.0",
+    "origin": "http://127.0.0.1:4184",
+    "note": "Build otimizado; mocks padrão completos; navegação completa com bootstrap do Service Worker; sem desativar assets, fontes ou funcionalidades."
+  },
+  "runs": [
+    {
+      "page": "home",
+      "device": "mobile",
+      "run": 1,
+      "scores": {
+        "performance": 93,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 3180.995999999999,
+      "cls": 0,
+      "tbt": 57.572
+    },
+    {
+      "page": "home",
+      "device": "mobile",
+      "run": 2,
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 2412.4500000000007,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "home",
+      "device": "mobile",
+      "run": 3,
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 2412.8279999999995,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "nft",
+      "device": "mobile",
+      "run": 1,
+      "scores": {
+        "performance": 93,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 3234.42,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "nft",
+      "device": "mobile",
+      "run": 2,
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 2781.623,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "nft",
+      "device": "mobile",
+      "run": 3,
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 2707.3337500000002,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "home",
+      "device": "desktop",
+      "run": 1,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 613.1120000000001,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "home",
+      "device": "desktop",
+      "run": 2,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 572.6239999999999,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "home",
+      "device": "desktop",
+      "run": 3,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 764.4799999999999,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "nft",
+      "device": "desktop",
+      "run": 1,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 650.576,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "nft",
+      "device": "desktop",
+      "run": 2,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 620.5240000000001,
+      "cls": 0,
+      "tbt": 0
+    },
+    {
+      "page": "nft",
+      "device": "desktop",
+      "run": 3,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 613.9549999999999,
+      "cls": 0,
+      "tbt": 0
+    }
+  ]
+}

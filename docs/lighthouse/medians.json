@@ -1,0 +1,46 @@
+[
+  {
+    "page": "home",
+    "device": "mobile",
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "lcp": 2412.8279999999995,
+    "cls": 0,
+    "tbt": 0
+  },
+  {
+    "page": "home",
+    "device": "desktop",
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "lcp": 613.1120000000001,
+    "cls": 0,
+    "tbt": 0
+  },
+  {
+    "page": "nft",
+    "device": "mobile",
+    "performance": 96,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "lcp": 2781.623,
+    "cls": 0,
+    "tbt": 0
+  },
+  {
+    "page": "nft",
+    "device": "desktop",
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "lcp": 620.5240000000001,
+    "cls": 0,
+    "tbt": 0
+  }
+]

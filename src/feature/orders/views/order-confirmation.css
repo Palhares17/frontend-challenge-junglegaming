@@ -1,0 +1,108 @@
+.order-confirmation-page {
+  min-height: 100svh;
+  padding: 32px 20px;
+}
+.order-receipt {
+  position: relative;
+  width: min(100%, 578px);
+  margin-inline: auto;
+  border-bottom: 10px solid var(--primary);
+  background: var(--card);
+}
+.receipt-header {
+  display: flex;
+  min-height: 156px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 24px;
+}
+.receipt-header h1 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+.receipt-close {
+  position: absolute;
+  z-index: 1;
+  right: 4px;
+  top: 4px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+.receipt-metadata {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border-block: 1px solid var(--primary);
+  padding: 16px 24px;
+  color: var(--muted-foreground);
+}
+.receipt-metadata dt {
+  font-size: 14px;
+  line-height: 16px;
+}
+.receipt-metadata dd {
+  margin-top: 2px;
+  font-size: 15px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+.receipt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 20px 40px;
+}
+.receipt-totals {
+  margin-top: 4px;
+}
+.receipt-totals .order-total {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.receipt-note {
+  border-top: 0.3px solid var(--kurio-border-soft);
+  padding-top: 12px;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 22px;
+}
+@media (min-width: 640px) {
+  .receipt-metadata {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    padding: 16px 36px;
+  }
+}
+@media (min-width: 1024px) {
+  .order-confirmation-page {
+    padding-top: 166px;
+  }
+  .receipt-header h1 {
+    line-height: 16px;
+  }
+  .receipt-metadata {
+    min-height: 65px;
+    padding-block: 12px;
+  }
+  .receipt-details {
+    min-height: 588px;
+    padding: 20px 44px 48px;
+  }
+  .receipt-totals {
+    align-self: flex-end;
+    width: 321px;
+  }
+  .receipt-note {
+    margin-top: auto;
+  }
+}

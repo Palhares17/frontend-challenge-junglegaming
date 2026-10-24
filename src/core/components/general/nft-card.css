@@ -1,0 +1,39 @@
+/* Observed artwork containers: mobile 175×200, desktop 258×300. */
+.nft-card-artwork {
+  width: 100%;
+  aspect-ratio: 175 / 200;
+  border-radius: 20px;
+  background: linear-gradient(
+    139.548deg,
+    var(--kurio-surface-card) 11.999%,
+    var(--kurio-surface-control) 106.59%
+  );
+}
+.nft-card-image {
+  width: calc(100% - 7px);
+  border-radius: 16px;
+}
+
+@media (min-width: 1024px) {
+  .nft-card-artwork {
+    aspect-ratio: 258 / 300;
+    border-radius: 0;
+    background: var(--card);
+  }
+  .nft-card-image {
+    width: calc(100% - 8px);
+    border-radius: 15px;
+  }
+  .nft-card[data-variant='portrait'] .nft-card-image {
+    width: calc(100% - 34px);
+    height: calc(100% - 14px);
+    margin-left: 8px;
+    border-radius: 13px;
+  }
+  .nft-card[data-variant='portrait'] .nft-card-caption {
+    max-width: 164px;
+  }
+  .nft-card[data-variant='portrait'] .nft-card-caption p {
+    margin-top: 6px;
+  }
+}

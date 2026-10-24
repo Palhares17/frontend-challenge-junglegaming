@@ -1,0 +1,71 @@
+.quantity-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.quantity-control button {
+  display: flex;
+  width: 30px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+.quantity-control button > span {
+  display: flex;
+  width: 20px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--background);
+  border-radius: 20px;
+  background: var(--primary);
+  box-shadow: var(--shadow-quantity);
+}
+.quantity-control output {
+  min-width: 12px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 25px;
+}
+.quantity-control button:disabled {
+  opacity: 0.5;
+}
+.quantity-muted button > span {
+  width: 24px;
+  height: 24px;
+  border-color: var(--border);
+  background: var(--accent);
+}
+.quantity-large {
+  gap: 6px;
+}
+.quantity-large button {
+  width: 33px;
+  height: 50px;
+}
+.quantity-large button > span {
+  width: 33px;
+  height: 49.5px;
+  border-radius: 33px;
+  box-shadow: var(--shadow-quantity-large);
+}
+.quantity-large output {
+  font-size: 20px;
+}
+
+.quantity-muted button:disabled {
+  opacity: 1;
+}
+@media (max-width: 1023px) {
+  .quantity-muted {
+    gap: 4px;
+  }
+  .quantity-muted output {
+    min-width: 15px;
+    font-size: 16px;
+  }
+  .quantity-muted button {
+    width: 30px;
+  }
+}

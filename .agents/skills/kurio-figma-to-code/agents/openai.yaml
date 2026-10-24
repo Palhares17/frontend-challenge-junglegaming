@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kurio · Figma para componentes"
+  short_description: "Telas do Figma com os padrões do projeto Kurio"
+  default_prompt: "Use $kurio-figma-to-code para implementar esta referência do Figma seguindo os componentes, tokens e padrões do projeto."
+policy:
+  allow_implicit_invocation: true

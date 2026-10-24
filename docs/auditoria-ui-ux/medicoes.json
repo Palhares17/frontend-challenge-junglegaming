@@ -1,0 +1,304 @@
+{
+  "homeBefore": {
+    "header": {
+      "bottom": 69,
+      "height": 45,
+      "left": 120,
+      "right": 1320,
+      "top": 24,
+      "width": 1200,
+      "x": 120,
+      "y": 24
+    },
+    "heroImage": {
+      "bottom": 0,
+      "height": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "width": 0,
+      "x": 0,
+      "y": 0
+    },
+    "scrollY": 0,
+    "title": {
+      "bottom": 308,
+      "height": 140,
+      "left": 160,
+      "right": 760,
+      "top": 168,
+      "width": 600,
+      "x": 160,
+      "y": 168
+    },
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  "loginOpen": {
+    "focus": "Criar conta",
+    "header": {
+      "bottom": 69,
+      "height": 45,
+      "left": 120,
+      "right": 1320,
+      "top": 24,
+      "width": 1200,
+      "x": 120,
+      "y": 24
+    },
+    "heroImage": {
+      "bottom": 0,
+      "height": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "width": 0,
+      "x": 0,
+      "y": 0
+    },
+    "scrollY": 0,
+    "title": {
+      "bottom": 326,
+      "height": 140,
+      "left": 168,
+      "right": 768,
+      "top": 186,
+      "width": 600,
+      "x": 168,
+      "y": 186
+    },
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  "registerLow": {
+    "bodyOverflow": "hidden",
+    "dialog": {
+      "bottom": 814,
+      "height": 656,
+      "left": 470,
+      "right": 970,
+      "top": 158,
+      "width": 500,
+      "x": 470,
+      "y": 158
+    },
+    "dialogOverflow": "visible",
+    "social": [
+      {
+        "rect": {
+          "bottom": 679,
+          "height": 40,
+          "left": 550,
+          "right": 890,
+          "top": 639,
+          "width": 340,
+          "x": 550,
+          "y": 639
+        },
+        "text": "Continuar com Google"
+      },
+      {
+        "rect": {
+          "bottom": 731,
+          "height": 40,
+          "left": 550,
+          "right": 890,
+          "top": 691,
+          "width": 340,
+          "x": 550,
+          "y": 691
+        },
+        "text": "Continuar com Facebook"
+      }
+    ],
+    "viewport": {
+      "height": 600,
+      "width": 1440
+    }
+  },
+  "homeAfter": {
+    "scrollY": 0,
+    "title": {
+      "bottom": 308,
+      "height": 140,
+      "left": 160,
+      "right": 760,
+      "top": 168,
+      "width": 600,
+      "x": 160,
+      "y": 168
+    }
+  },
+  "loginCloseFocus": {
+    "focusName": null,
+    "focusTag": "BODY",
+    "focusText": "BODY",
+    "scrollY": 0
+  },
+  "commonModalFocus": {
+    "header": {
+      "bottom": 69,
+      "height": 45,
+      "left": 120,
+      "right": 1320,
+      "top": 24,
+      "width": 1200,
+      "x": 120,
+      "y": 24
+    },
+    "inDialog": true,
+    "name": "Fechar",
+    "title": {
+      "bottom": 308,
+      "height": 140,
+      "left": 160,
+      "right": 760,
+      "top": 168,
+      "width": 600,
+      "x": 160,
+      "y": 168
+    }
+  },
+  "commonModalClosed": {
+    "bodyOverflow": "visible",
+    "focus": "Criadores",
+    "scrollY": 0
+  },
+  "scrolledBefore": {
+    "scrollY": 2450
+  },
+  "scrolledOpen": {
+    "dialog": {
+      "bottom": 582,
+      "height": 164,
+      "left": 528,
+      "right": 912,
+      "top": 418,
+      "width": 384,
+      "x": 528,
+      "y": 418
+    },
+    "overflow": "hidden",
+    "scrollY": 2434
+  },
+  "scrolledClosed": {
+    "focus": "Ler mais→",
+    "overflow": "visible",
+    "scrollY": 2434
+  },
+  "editorialNativeOpen": {
+    "bodyOverflow": "hidden",
+    "dialog": {
+      "bottom": 582,
+      "height": 164,
+      "left": 528,
+      "right": 912,
+      "top": 418,
+      "width": 384,
+      "x": 528,
+      "y": 418
+    },
+    "focus": "Entendi",
+    "scrollY": 2450
+  },
+  "editorialNativeClosed": {
+    "focus": "Ler mais→",
+    "scrollY": 2450
+  },
+  "longModal": {
+    "close": {
+      "bottom": 372,
+      "height": 32,
+      "left": 334,
+      "right": 366,
+      "top": 340,
+      "width": 32,
+      "x": 334,
+      "y": 340
+    },
+    "scrollY": 2680.5,
+    "title": {
+      "bottom": 380,
+      "height": 32,
+      "left": 32,
+      "right": 358,
+      "top": 348,
+      "width": 326,
+      "x": 32,
+      "y": 348
+    },
+    "titlePadding": "0px"
+  },
+  "longModalDesktop": {
+    "close": {
+      "bottom": 458,
+      "height": 32,
+      "left": 872,
+      "right": 904,
+      "top": 426,
+      "width": 32,
+      "x": 872,
+      "y": 426
+    },
+    "dialog": {
+      "bottom": 582,
+      "height": 164,
+      "left": 528,
+      "right": 912,
+      "top": 418,
+      "width": 384,
+      "x": 528,
+      "y": 418
+    },
+    "scrollY": 2675.5,
+    "title": {
+      "bottom": 450,
+      "height": 16,
+      "left": 544,
+      "right": 896,
+      "top": 434,
+      "width": 352,
+      "x": 544,
+      "y": 434
+    },
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  "register1023": {
+    "bodyOverflow": "visible",
+    "dialogCount": 0,
+    "height": 600,
+    "width": 1023
+  },
+  "register1024": {
+    "bodyOverflow": "hidden",
+    "dialog": {
+      "bottom": 772,
+      "height": 656,
+      "left": 262,
+      "right": 762,
+      "top": 116,
+      "width": 500,
+      "x": 262,
+      "y": 116
+    },
+    "height": 600,
+    "width": 1024
+  },
+  "contrasts": {
+    "borderOnBackground": 1.3426825436061136,
+    "textOnCopperStop": 2.4951934524273494,
+    "textOn75PercentCopperOverCard": 3.8182638038611563
+  },
+  "notes": {
+    "preliminaryScroll": "Diferença inicial de 16 px com clique por locator descartada: clique direto manteve 2450 px ao abrir e fechar.",
+    "heroImage": "Retângulos zero pertencem a imagem oculta; não utilizados como evidência.",
+    "zoom": "Atalhos não alteraram viewport/DPR; zoom real de 200% não validado."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "url": "https://frontend-challenge-junglegaming-gamma.vercel.app",
+  "date": "2026-10-24T16:40:47.031Z",
+  "browser": "156.0.8078.4",
+  "results": [
+    "Acesso direto/refresh do detalhe, assets e MSW",
+    "Socket.IO atualiza o preço no detalhe pela interface",
+    "Compra pela UI, merge de visitante, carteira, cotação, pedido/recibo e refresh privado",
+    "Sessão recuperada após HTML público, busca na URL e fallback para NFT inexistente",
+    "Baixa do carrinho e entrada separada de prévia"
+  ],
+  "pageErrors": []
+}
